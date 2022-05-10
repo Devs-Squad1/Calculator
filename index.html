@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content=“mshtml 5.50.4611.1300” name=“go generator”>
+    <title>calculator</title>
+
+    <!--stylesheet-->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <form name="fps_calc">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="calc-area">
+                                        <div class="table-1">
+                                            <table>
+                                                <p><b>Input 1:</b></p>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <i>BB Vekt</i> (i gram, per kule):
+                                                        </td>
+                                                        <td>
+                                                            <div><input name="bbmass" size="12" value="0.2"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i>Hastighet (Fot Per Sekund)</i>:</td>
+                                                        <td><input name="fps" size="12" value="328"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <strong><input onclick="calculate()" type="button" ut="" value="Calculate"> </strong>
+                                        </div>
+                                        <div class="table-2">
+                                            <p><b>Resultater 1</b></p>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <p><i>Utgangshatighet (mps)</i>:</p>
+                                                        <td><input name="velocity_ms" size="12"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i>Energi (Joule)</i>:</td>
+                                                        <td><input name="joule" size="12"> </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <script language="JavaScript">
+                            function calculate() {
+                                var bbmass = document.fps_calc.bbmass.value
+                                var fps = document.fps_calc.fps.value;
+                                var velocity_ms = (fps * 0.304);
+                                var mass_kg = (bbmass / 1000);
+                                var energy_joule = (0.5 * ((mass_kg) * (velocity_ms * velocity_ms)))
+                                velocity_ms = Math.round(velocity_ms * 100) / 100;
+                                energy_joule = Math.round(energy_joule * 100) / 100;
+                                document.fps_calc.joule.value = (energy_joule);
+                                document.fps_calc.velocity_ms.value = (velocity_ms);
+                                convert();
+                            }
+
+                            function convert() {
+                                energy_joule = document.fps_calc.joule.value;
+                                var footpounds = (0.735 * energy_joule)
+                                footpounds = Math.round(footpounds * 100) / 100;
+                                document.fps_calc.footpounds.value = (footpounds);
+                            }
+
+                            function calculate2() {
+                                var bbmass = document.effective_range.bbmass.value
+                                var energy_joule = document.effective_range.bbenergy.value
+                                var mass_kg = (bbmass / 1000);
+                                var bbvelocity_fps = (Math.sqrt((2 * energy_joule) / mass_kg)) * 3.28;
+                                var bbvelocity_ms = (bbvelocity_fps * 0.304);
+                                var effectiverange_ms = 0.45152364 * bbvelocity_ms;
+                                var effectiverange_fps = 0.45152364 * bbvelocity_fps;
+                                bbvelocity_fps = Math.round(bbvelocity_fps * 100) / 100;
+                                bbvelocity_ms = Math.round(bbvelocity_ms * 100) / 100;
+                                effectiverange_ms = Math.round(effectiverange_ms * 100) / 100;
+                                effectiverange_fps = Math.round(effectiverange_fps * 100) / 100;
+                                document.effective_range.bbvelocity_fps.value = bbvelocity_fps;
+                                document.effective_range.bbvelocity_ms.value = bbvelocity_ms;
+                                document.effective_range.effectiverange_ms.value = effectiverange_ms;
+                                document.effective_range.effectiverange_fps.value = effectiverange_fps;
+                            }
+
+                        </script>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+
+
+
+
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+
+</html>
